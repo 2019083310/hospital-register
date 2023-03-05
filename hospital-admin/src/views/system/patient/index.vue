@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>home page</h2>
+    <h2>system-patient</h2>
   </div>
 </template>
 

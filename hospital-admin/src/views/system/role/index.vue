@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>home page</h2>
+    <h2>system-role</h2>
   </div>
 </template>
 

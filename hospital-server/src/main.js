@@ -1,9 +1,6 @@
 // ?主入口
 const app = require('./app/index')
-const dotenv = require('dotenv')
-
-//*把.env的常量注入到process.env中 
-dotenv.config()
+require('./app/config')
 
 // *启动数据库
 require('./app/database')

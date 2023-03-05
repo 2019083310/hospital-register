@@ -21,6 +21,5 @@ app.use(router)
 
 // *按需引入组件库组件
 autoImportComponent(app)
-console.log(app)
 
 app.mount('#app')

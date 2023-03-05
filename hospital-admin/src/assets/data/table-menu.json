@@ -1,0 +1,37 @@
+[
+  {
+    "prop": "name",
+    "label": "菜单名称",
+    "min-width": 150
+  },
+  {
+    "prop": "level",
+    "label": "级别",
+    "min-width": 80
+  },
+  {
+    "prop": "url",
+    "label": "菜单url",
+    "min-width": 150
+  },
+  {
+    "prop": "role",
+    "label": "权限",
+    "min-width": 120
+  },
+  {
+    "prop": "createTime",
+    "label": "创建时间",
+    "min-width": 220
+  },
+  {
+    "prop": "updateTime",
+    "label": "更新时间",
+    "min-width": 220
+  },
+  {
+    "prop": "operate",
+    "label": "操作",
+    "min-width": 150
+  }
+]

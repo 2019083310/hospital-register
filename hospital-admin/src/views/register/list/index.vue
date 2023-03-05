@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>home page</h2>
+    <h2>register-list</h2>
   </div>
 </template>
 

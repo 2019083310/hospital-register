@@ -1,4 +1,9 @@
 // ?app config信息
+const dotenv = require('dotenv')
+
+//*把.env的常量注入到process.env中 
+dotenv.config()
+
 const {
   APP_HOST,
   APP_PORT,

@@ -1,0 +1,120 @@
+[
+  {
+    "title": "首页",
+    "path": "/home"
+  },
+  {
+    "title": "预约管理",
+    "path": "/register",
+    "children": [
+      {
+        "title": "挂号列表",
+        "path": "/register/list"
+      },
+      {
+        "title": "医生排班",
+        "path": "/register/duty"
+      },
+      {
+        "title": "医生名下",
+        "path": "/register/doctor"
+      }
+    ]
+  },
+  {
+    "title": "人员科室",
+    "path": "/section",
+    "children": [
+      {
+        "title": "分院管理",
+        "path": "/section/manage"
+      },
+      {
+        "title": "一级科室",
+        "path": "/section/one"
+      },
+      {
+        "title": "二级科室",
+        "path": "/section/two"
+      },
+      {
+        "title": "医生管理",
+        "path": "/section/doctor"
+      }
+    ]
+  },
+  {
+    "title": "费用管理",
+    "path": "/order",
+    "children": [
+      {
+        "title": "充值订单",
+        "path": "/order/list"
+      },
+      {
+        "title": "其它缴费",
+        "path": "/order/pay"
+      },
+      {
+        "title": "退款管理",
+        "path": "/order/refund"
+      }
+    ]
+  },
+  {
+    "title": "系统管理",
+    "path": "/system",
+    "children": [
+      {
+        "title": "用户管理",
+        "path": "/system/user"
+      },
+      {
+        "title": "菜单管理",
+        "path": "/system/menu"
+      },
+      {
+        "title": "角色管理",
+        "path": "/system/role"
+      },
+      {
+        "title": "管理员管理",
+        "path": "/system/admin"
+      },
+      {
+        "title": "就诊人管理",
+        "path": "/system/patient"
+      }
+    ]
+  },
+  {
+    "title": "医院信息",
+    "path": "/hospital",
+    "children": [
+      {
+        "title": "轮播图设置",
+        "path": "/hospital/banner"
+      },
+      {
+        "title": "医院公告",
+        "path": "/hospital/notice"
+      },
+      {
+        "title": "医院导航",
+        "path": "/hospital/nav"
+      },
+      {
+        "title": "发布文章",
+        "path": "/hospital/article"
+      },
+      {
+        "title": "文章分享",
+        "path": "/hospital/share"
+      },
+      {
+        "title": "用户反馈",
+        "path": "/hospital/feedback"
+      }
+    ]
+  }
+]
