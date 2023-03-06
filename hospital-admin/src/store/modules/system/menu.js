@@ -23,11 +23,24 @@ const useMenuStore = defineStore('menu', {
       const menuObj = {}
       for (const item of result) {
         if (item.level === 1) {
-          menuObj[item.key] = {
-            ...item,
-            children: []
+          if (!menuObj[item.key]) {
+            menuObj[item.key] = {
+              ...item,
+              children: []
+            }
+          } else {
+            menuObj[item.key] = {
+              ...item,
+              ...menuObj[item.key]
+            }
           }
         } else if (item.level === 2) {
+          if (!menuObj[item.key]) {
+            menuObj[item.key] = {
+              children: []
+            }
+          }
+
           menuObj[item.key]['children'].push(item)
         }
       }

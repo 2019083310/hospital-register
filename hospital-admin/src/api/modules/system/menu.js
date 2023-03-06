@@ -32,3 +32,19 @@ export const removeMenuFistItem = (key) => {
     url: `/system/menu/remove/one/${key}`
   })
 }
+
+// 修改菜单选项
+export const updateMenuItem = (data) => {
+  return request.devFetch.request({
+    url: '/system/menu/update',
+    method: 'put',
+    data
+  })
+}
+
+// 为二级列表寻找父级Name
+export const getFatherName = (key) => {
+  return request.devFetch.request({
+    url: `/system/menu/getName/${key}`
+  })
+}

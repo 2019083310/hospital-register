@@ -84,6 +84,52 @@ class SystemController {
       result
     }
   }
+
+  // *5.修改系统菜单
+  async updateSystemMenu(ctx, next) {
+    let result
+    const {
+      id,
+      name,
+      url,
+      level,
+      key
+    } = ctx.request.body
+
+    try {
+      result = await systemModel.updateSystemMenu(id, name, url, level, key)
+    } catch (error) {
+      const err = new Error(error)
+      return ctx.app.emit('error', ctx, err)
+    }
+
+    ctx.status = 200
+    ctx.body = {
+      code: 1,
+      result
+    }
+  }
+
+  // *6.为二级menu获取父级menu的key
+  async getFatherName(ctx, next) {
+    let result
+    const {
+      key
+    } = ctx.request.params
+
+    try {
+      result = await systemModel.getFatherName(key)
+    } catch (error) {
+      const err = new Error(error)
+      return ctx.app.emit('error', ctx, err)
+    }
+
+    ctx.status = 200
+    ctx.body = {
+      code: 1,
+      result
+    }
+  }
 }
 
 module.exports = new SystemController()

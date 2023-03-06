@@ -14,7 +14,7 @@
         @deleteTableData="handleDeleteTableColumn"
       ></app-table>
       <app-form-modal
-        title="新建菜单"
+        :title="modalTitle"
         v-if="isShowModal"
         @cancelClick="handleFormCancel"
         @confirmClick="handleFormConfirm"
@@ -30,13 +30,17 @@
               <el-input v-model="formModel.name" placeholder="请输入菜单名称" />
             </el-form-item>
             <el-form-item label="菜单等级" prop="level">
-              <el-select v-model.number="formModel.level" placeholder="请选择菜单等级">
+              <el-select
+                v-model.number="formModel.level"
+                placeholder="请选择菜单等级"
+                :disabled="oldItemLevel === 1"
+              >
                 <el-option label="一级菜单" value="1" />
                 <el-option label="二级菜单" value="2" />
               </el-select>
             </el-form-item>
             <template v-if="formModel.level === 2">
-              <el-form-item label="父级菜单" prop="">
+              <el-form-item label="父级菜单" prop="fatherMenu">
                 <el-select v-model="formModel.fatherMenu" placeholder="请选择父级菜单">
                   <template v-for="list in menuList">
                     <el-option :label="list.name" :value="list.key"></el-option>
@@ -63,6 +67,8 @@ import {
   addMenuItem,
   removeMenuItem,
   removeMenuFistItem,
+  updateMenuItem,
+  // getFatherName,
 } from "@/api/modules/system/menu";
 import { useGlobalTips } from "@/utils/index";
 
@@ -78,7 +84,10 @@ const menuStore = useMenuStore();
 const { menuList } = storeToRefs(menuStore);
 
 const isShowModal = ref(false);
+const modalTitle = ref("新建菜单");
 const ruleFormRef = ref();
+const updateItemId = ref("");
+const oldItemLevel = ref();
 const formModel = reactive({
   name: "",
   level: "",
@@ -98,36 +107,65 @@ const rules = reactive({
       trigger: "change",
     },
   ],
+  fatherMenu: [
+    {
+      required: true,
+      message: "请选择父级菜单",
+      trigger: "change",
+    },
+  ],
   url: [{ required: true, message: "请输入合法的路径", trigger: "blur" }],
 });
 
 // ?新增菜单
 const handleAddMenuClick = () => {
+  modalTitle.value = "新增菜单";
+  oldItemLevel.value = "";
   isShowModal.value = true;
 };
 
 // ?新增菜单取消按钮回调
 const handleFormCancel = () => {
   isShowModal.value = false;
+
+  resetFormModal();
 };
 
 // ?新增菜单确认按钮回调
 const handleFormConfirm = async () => {
   const valid = await ruleFormRef.value.validate();
 
-  if (valid) {
-    try {
-      if (formModel.level === 1) {
-        // *生成唯一的key
-        formModel.key = Date.now().toString(36);
-      } else {
-        formModel.key = formModel.fatherMenu;
-      }
+  if (valid && modalTitle.value === "新增菜单") {
+    if (formModel.level === 1) {
+      // *生成唯一的key
+      formModel.key = Date.now().toString(36);
+    } else {
+      formModel.key = formModel.fatherMenu;
+    }
 
+    try {
       await addMenuItem({ ...formModel });
       menuStore.changeMenuListAction();
 
-      ruleFormRef.value.resetFields();
+      resetFormModal();
+      isShowModal.value = false;
+      return;
+    } catch (error) {
+      return useGlobalTips("error", error.message);
+    }
+  } else if (valid && modalTitle.value === "编辑菜单") {
+    if (formModel.level === 1 && oldItemLevel.value !== 1) {
+      // *生成唯一的key
+      formModel.key = Date.now().toString(36);
+    } else {
+      formModel.key = formModel.fatherMenu;
+    }
+
+    try {
+      await updateMenuItem({ ...formModel, id: updateItemId.value });
+      menuStore.changeMenuListAction();
+
+      resetFormModal();
       isShowModal.value = false;
       return;
     } catch (error) {
@@ -137,8 +175,24 @@ const handleFormConfirm = async () => {
 };
 
 // ?表格column的编辑
-const handleEditTableColumn = (v) => {
-  console.log(v);
+const handleEditTableColumn = async (v) => {
+  try {
+    // const { result } = await getFatherName(v.key);
+
+    modalTitle.value = "编辑菜单";
+    formModel.name = v.name;
+    formModel.level = v.level;
+    formModel.url = v.url;
+    // formModel.fatherMenu = result[0].name;
+    formModel.fatherMenu = v.key;
+
+    oldItemLevel.value = v.level;
+    updateItemId.value = v.id;
+
+    isShowModal.value = true;
+  } catch (error) {
+    return error;
+  }
 };
 // ?表格column的删除
 const handleDeleteTableColumn = async (v) => {
@@ -156,6 +210,14 @@ const handleDeleteTableColumn = async (v) => {
   } catch (error) {
     return;
   }
+};
+
+// *将formModal值置空
+const resetFormModal = () => {
+  formModel.name = "";
+  formModel.level = "";
+  formModel.url = "";
+  formModel.fatherMenu = "";
 };
 
 // ?生命周期回调
