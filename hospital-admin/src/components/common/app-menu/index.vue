@@ -1,9 +1,9 @@
 <template>
   <div class="app-menu">
-    <h2 class="logo">预约挂号管理中心</h2>
+    <div class="menu-logo omit">预约挂号管理中心</div>
     <el-menu
       :default-active="defaultActive"
-      text-color="#eee"
+      active-text-color="#eee"
       background-color="#001529"
       @open="handleMenuOpen"
       @close="handleMenuClose"
@@ -14,15 +14,20 @@
             <template #title>
               <span class="sub-title">{{ menu.title }}</span>
             </template>
-            <template v-for="submenu in menu.children" :key="submenu.title">
-              <el-menu-item @click="handleMenuItemClick(submenu)">
+            <template v-for="(submenu, i) in menu.children" :key="submenu.title">
+              <el-menu-item
+                @click="handleMenuItemClick(submenu)"
+                :index="index + '-' + i"
+              >
                 {{ submenu.title }}
               </el-menu-item>
             </template>
           </el-sub-menu>
         </template>
         <template v-else>
-          <el-menu-item @click="handleMenuItemClick(menu)">{{ menu.title }}</el-menu-item>
+          <el-menu-item @click="handleMenuItemClick(menu)" :index="index + ''">{{
+            menu.title
+          }}</el-menu-item>
         </template>
       </template>
     </el-menu>
@@ -57,18 +62,49 @@ const handleMenuItemClick = (v) => {
 
 <style lang="less" scoped>
 .app-menu {
-  width: 260px;
+  flex-basis: 220px;
+  min-width: 220px;
   height: 100vh;
 
+  color: #b7bdc3;
   background-color: #001529;
 
-  .logo {
+  .menu-logo {
+    width: 100%;
     line-height: 50px;
 
     color: #fff;
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 400;
     text-align: center;
+
+    box-sizing: border-box;
+  }
+
+  .el-menu.el-menu--vertical {
+    border: none;
+    .el-sub-menu .el-menu--inline .el-menu-item {
+      color: #b7bdc3;
+      background-color: rgb(12, 33, 53);
+      &.is-active {
+        color: #fff;
+        background-color: #0a60bd;
+      }
+    }
+    .el-sub-menu .el-sub-menu__title {
+      .sub-title {
+        color: #b7bdc3;
+      }
+      .el-icon.el-sub-menu__icon-arrow{
+        color: var(--el-text-color-secondary) !important;
+      }
+    }
+    .el-menu-item {
+      color: #b7bdc3;
+      &.is-active {
+        color: #fff;
+      }
+    }
   }
 }
 </style>

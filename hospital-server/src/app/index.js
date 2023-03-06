@@ -12,17 +12,17 @@ const app = new Koa()
 app.use(cors())
 
 // *通过ctx.request.body处理post/put请求
-// app.use(bodyParser({
-//   enableTypes: ['json', 'form', 'text']
-// }))
+app.use(bodyParser({
+  enableTypes: ['json', 'form', 'text']
+}))
 
 // *处理大文件上传form-data格式
-app.use(KoaBody({
-  multipart: true,
-  formidable: {
-    maxFileSize: 1024 * 1024 * 200
-  }
-}))
+// app.use(KoaBody({
+//   multipart: true,
+//   formidable: {
+//     maxFileSize: 1024 * 1024 * 200
+//   }
+// }))
 
 // *所有的路由集成
 appRoutes(app)

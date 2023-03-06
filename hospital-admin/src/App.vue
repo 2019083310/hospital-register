@@ -22,6 +22,7 @@ import AppHeader from "@/components/common/app-header/index.vue";
 
   width: 100vw;
   height: 100vh;
+  box-sizing: border-box;
 
   .content-wrap {
     flex: 1;
@@ -32,9 +33,14 @@ import AppHeader from "@/components/common/app-header/index.vue";
 
     background-color: #f5f5f5;
 
+    box-sizing: border-box;
+    overflow: auto;
+
     .content {
       flex: 1;
       padding: 20px;
+
+      box-sizing: border-box;
     }
   }
 }

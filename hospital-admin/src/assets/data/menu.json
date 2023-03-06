@@ -62,32 +62,6 @@
     ]
   },
   {
-    "title": "系统管理",
-    "path": "/system",
-    "children": [
-      {
-        "title": "用户管理",
-        "path": "/system/user"
-      },
-      {
-        "title": "菜单管理",
-        "path": "/system/menu"
-      },
-      {
-        "title": "角色管理",
-        "path": "/system/role"
-      },
-      {
-        "title": "管理员管理",
-        "path": "/system/admin"
-      },
-      {
-        "title": "就诊人管理",
-        "path": "/system/patient"
-      }
-    ]
-  },
-  {
     "title": "医院信息",
     "path": "/hospital",
     "children": [
@@ -114,6 +88,32 @@
       {
         "title": "用户反馈",
         "path": "/hospital/feedback"
+      }
+    ]
+  },
+  {
+    "title": "系统管理",
+    "path": "/system",
+    "children": [
+      {
+        "title": "用户管理",
+        "path": "/system/user"
+      },
+      {
+        "title": "菜单管理",
+        "path": "/system/menu"
+      },
+      {
+        "title": "角色管理",
+        "path": "/system/role"
+      },
+      {
+        "title": "管理员管理",
+        "path": "/system/admin"
+      },
+      {
+        "title": "就诊人管理",
+        "path": "/system/patient"
       }
     ]
   }

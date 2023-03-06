@@ -1,11 +1,11 @@
 // ?处理app报错
 const errorTypes = require('../common/error.types')
 
-const errorHandle = (ctx, type) => {
+const errorHandle = (ctx, error) => {
   let message = ''
   let status = 400
 
-  switch (type) {
+  switch (error) {
     case errorTypes.ACCOUNT_CONFLICT:
       status = 409
       message = '用户名已存在'
@@ -16,7 +16,7 @@ const errorHandle = (ctx, type) => {
       break
     default:
       status = 400
-      message = '未知错误'
+      message = error
       break
   }
 
