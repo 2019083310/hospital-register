@@ -1,11 +1,9 @@
 // ?全局提示信息
-import {
-  ElMessage
-} from 'element-plus'
+// todo 在全局注册ElMessage的情况下我们可以这样使用消息提示组件
 
 export const useGlobalTips = (type, message) => {
   return ElMessage({
-    message,
-    type
+    type,
+    message
   })
 }

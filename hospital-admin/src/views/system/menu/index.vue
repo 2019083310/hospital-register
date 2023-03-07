@@ -147,8 +147,9 @@ const handleFormConfirm = async () => {
       await addMenuItem({ ...formModel });
       menuStore.changeMenuListAction();
 
-      resetFormModal();
       isShowModal.value = false;
+      useGlobalTips("success", `添加${formModel.name}菜单项成功`);
+      resetFormModal();
       return;
     } catch (error) {
       return useGlobalTips("error", error.message);
@@ -165,8 +166,9 @@ const handleFormConfirm = async () => {
       await updateMenuItem({ ...formModel, id: updateItemId.value });
       menuStore.changeMenuListAction();
 
-      resetFormModal();
       isShowModal.value = false;
+      useGlobalTips("success", `修改${formModel.name}菜单项成功`);
+      resetFormModal();
       return;
     } catch (error) {
       return useGlobalTips("error", error.message);
@@ -191,9 +193,10 @@ const handleEditTableColumn = async (v) => {
 
     isShowModal.value = true;
   } catch (error) {
-    return error;
+    return useGlobalTips("error", error.message);
   }
 };
+
 // ?表格column的删除
 const handleDeleteTableColumn = async (v) => {
   try {
@@ -206,9 +209,10 @@ const handleDeleteTableColumn = async (v) => {
 
     if (res.code === 1) {
       menuStore.changeMenuListAction();
+      useGlobalTips("success", `删除${v.name}菜单成功`);
     }
   } catch (error) {
-    return;
+    return useGlobalTips("error", error.message);
   }
 };
 

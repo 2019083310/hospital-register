@@ -1,5 +1,8 @@
 import autoImportComponent from "./autoImportCompent";
 import {
+  registerMessageCpn
+} from './autoImportCompent'
+import {
   useGlobalTips
 } from './globalTips'
 import {
@@ -8,6 +11,7 @@ import {
 
 export {
   autoImportComponent,
+  registerMessageCpn,
   useGlobalTips,
   formatDate
 }

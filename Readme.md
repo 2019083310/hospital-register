@@ -7,3 +7,8 @@
     也就是说，控制台隐藏了body的打印
 
 ## 2.node现在已经支持了esModule模块化方式，所以在Install 第三方库的时候要注意版本
+
+## 3.在使用element-plus的时候，使用按需引入的方式，但是不能正常使用ElMessage和ElMessageBox组件
+  经过查阅资料发现，如果使用全局引入的方式，还会引入样式文件，但是按需引入并没有引入样式文件，所以没有生效
+  另外，其他的组件是作为组件来使用，ElMessage是通过函数来调用，所以要通过app.use()实现全局注册
+  解决办法就是，引入'element-plus/theme-chalk/el-message.css'文件
