@@ -6,7 +6,9 @@ const {
   removeSystemMenu,
   removeSystemFirstMenu,
   updateSystemMenu,
-  getFatherName
+  getFatherName,
+  verifyMenuLevel,
+  filterMenuList
 } = require('../../../controllers/modules/system/menu-controller')
 
 const systemRouter = new KoaRouter({
@@ -31,5 +33,11 @@ systemRouter.put('/menu/update', updateSystemMenu)
 
 // *6.为二级menu获取父级menu的key
 systemRouter.get('/menu/getName/:key',getFatherName)
+
+// *7.判断是不是一级菜单
+systemRouter.get('/menu/verify/:id',verifyMenuLevel)
+
+// *8.筛选一级菜单
+systemRouter.post('/menu/filter',filterMenuList)
 
 module.exports = systemRouter

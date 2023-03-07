@@ -2,12 +2,16 @@
   <div class="app-table-wrap">
     <el-table
       style="width: 100%; margin-bottom: 20px"
+      flexible
       border
       empty-text="暂时没有数据"
       row-key="id"
       :data="tableData"
       :default-expand-all="expandAll"
     >
+      <template v-if="isShowIndexColumn">
+        <el-table-column type="index" label="序号" :min-width="30" align="center"></el-table-column>
+      </template>
       <template v-for="list in tableList" :key="list.prop">
         <template v-if="list.prop === 'operate'">
           <el-table-column
@@ -88,6 +92,10 @@ const props = defineProps({
     default: () => [],
   },
   expandAll: {
+    type: Boolean,
+    default: false,
+  },
+  isShowIndexColumn: {
     type: Boolean,
     default: false,
   },

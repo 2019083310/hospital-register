@@ -16,12 +16,13 @@ const errorHandle = (ctx, error) => {
       break
     default:
       status = 400
-      message = error
+      message = error.message
       break
   }
 
   ctx.status = status
   ctx.body = {
+    code: -1,
     message
   }
 }

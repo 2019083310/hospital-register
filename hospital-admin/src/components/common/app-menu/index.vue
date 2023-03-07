@@ -91,13 +91,12 @@ const handleMenuItemClick = (v) => {
         background-color: #0a60bd;
       }
     }
-    .el-sub-menu .el-sub-menu__title {
+    .el-sub-menu :deep(.el-sub-menu__title) {
       .sub-title {
         color: #b7bdc3;
       }
-      .el-icon.el-sub-menu__icon-arrow{
-        color: var(--el-text-color-secondary) !important;
-      }
+
+      color: #fff;
     }
     .el-menu-item {
       color: #b7bdc3;

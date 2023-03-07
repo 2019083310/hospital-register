@@ -41,6 +41,7 @@ const handleConfirmClick = () => {
   right:0;
   bottom:0;
   left:0;
+  min-height:800px;
 
   background-color: rgba(0, 0, 0, 0.5);
   .menu-modal {
@@ -50,6 +51,7 @@ const handleConfirmClick = () => {
     left: 50%;
     transform: translateX(-50%) translateY(-50%);
     width:450px;
+    min-height:500px;
 
     background-color: #fff;
     .modal-title {

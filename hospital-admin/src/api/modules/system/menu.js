@@ -48,3 +48,21 @@ export const getFatherName = (key) => {
     url: `/system/menu/getName/${key}`
   })
 }
+
+// 判断菜单level
+export const verifyMenuLevel = (id) => {
+  return request.devFetch.request({
+    url: `/system/menu/verify/${id}`
+  })
+}
+
+// 筛选菜单
+export const filterMenuFetch = (menulist) => {
+  return request.devFetch.request({
+    url: '/system/menu/filter',
+    method: 'post',
+    data: {
+      menulist
+    }
+  })
+}

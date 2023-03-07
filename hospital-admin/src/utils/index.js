@@ -1,4 +1,5 @@
 import autoImportComponent from "./autoImportCompent";
+import createData from "./generateNodeList";
 import {
   registerMessageCpn
 } from './autoImportCompent'
@@ -13,5 +14,6 @@ export {
   autoImportComponent,
   registerMessageCpn,
   useGlobalTips,
-  formatDate
+  formatDate,
+  createData
 }

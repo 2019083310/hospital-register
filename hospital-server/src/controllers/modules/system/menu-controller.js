@@ -15,12 +15,13 @@ class SystemController {
     try {
       result = await systemModel.addSystemMenu(name, url, level, key)
     } catch (error) {
-      const err = new Error(error)
+      const err = new Error(error.message)
       return ctx.app.emit('error', ctx, err)
     }
 
     ctx.status = 200
     ctx.body = {
+      code: 1,
       result
     }
   }
@@ -33,12 +34,13 @@ class SystemController {
       result = await systemModel.getSystemMenu()
 
     } catch (error) {
-      const err = new Error(error)
+      const err = new Error(error.message)
       return ctx.app.emit('error', ctx, err)
     }
 
     ctx.status = 200
     ctx.body = {
+      code: 1,
       result
     }
   }
@@ -53,7 +55,7 @@ class SystemController {
     try {
       result = await systemModel.removeSystemMenu(id)
     } catch (error) {
-      const err = new Error(error)
+      const err = new Error(error.message)
       return ctx.app.emit('error', ctx, err)
     }
 
@@ -74,7 +76,7 @@ class SystemController {
     try {
       result = await systemModel.removeSystemFirstMenu(key)
     } catch (error) {
-      const err = new Error(error)
+      const err = new Error(error.message)
       return ctx.app.emit('error', ctx, err)
     }
 
@@ -99,7 +101,7 @@ class SystemController {
     try {
       result = await systemModel.updateSystemMenu(id, name, url, level, key)
     } catch (error) {
-      const err = new Error(error)
+      const err = new Error(error.message)
       return ctx.app.emit('error', ctx, err)
     }
 
@@ -120,7 +122,7 @@ class SystemController {
     try {
       result = await systemModel.getFatherName(key)
     } catch (error) {
-      const err = new Error(error)
+      const err = new Error(error.message)
       return ctx.app.emit('error', ctx, err)
     }
 
@@ -128,6 +130,54 @@ class SystemController {
     ctx.body = {
       code: 1,
       result
+    }
+  }
+
+  // *7.判断菜单level
+  async verifyMenuLevel(ctx, next) {
+    let result
+    const {
+      id
+    } = ctx.request.params
+
+    try {
+      result = await systemModel.verifyMenuLevel(id)
+    } catch (error) {
+      const err = new Error(error.message)
+      return ctx.app.emit('error', ctx, err)
+    }
+
+    ctx.status = 200
+    ctx.body = {
+      code: 1,
+      result
+    }
+  }
+
+  // *8.筛选一级菜单
+  async filterMenuList(ctx, next) {
+    const {
+      menulist
+    } = ctx.request.body
+    const newMenuList = []
+
+    try {
+      for (const list of menulist) {
+        const ret = await systemModel.verifyMenuLevel(list)
+
+        if (ret[0]['level'] !== 1) {
+          newMenuList.push(list)
+        }
+      }
+    } catch (error) {
+      const err = new Error(error.message)
+      return ctx.app.emit('error', ctx, err)
+    }
+
+    ctx.status = 200
+    ctx.body = {
+      code: 1,
+      result: newMenuList
     }
   }
 }

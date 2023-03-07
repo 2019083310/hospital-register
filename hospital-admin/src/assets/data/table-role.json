@@ -1,0 +1,27 @@
+[
+  {
+    "prop": "name",
+    "label": "角色名称",
+    "min-width": 150
+  },
+  {
+    "prop": "desc",
+    "label": "角色权限",
+    "min-width": 80
+  },
+  {
+    "prop": "createTime",
+    "label": "创建时间",
+    "min-width": 220
+  },
+  {
+    "prop": "updateTime",
+    "label": "更新时间",
+    "min-width": 220
+  },
+  {
+    "prop": "operate",
+    "label": "操作",
+    "min-width": 150
+  }
+]

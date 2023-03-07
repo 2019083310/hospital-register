@@ -20,7 +20,7 @@ import AppHeader from "@/components/common/app-header/index.vue";
   display: flex;
   align-items: flex-start;
 
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   box-sizing: border-box;
 
@@ -34,7 +34,6 @@ import AppHeader from "@/components/common/app-header/index.vue";
     background-color: #f5f5f5;
 
     box-sizing: border-box;
-    overflow: auto;
 
     .content {
       flex: 1;
