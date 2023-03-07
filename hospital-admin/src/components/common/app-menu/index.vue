@@ -62,12 +62,20 @@ const handleMenuItemClick = (v) => {
 
 <style lang="less" scoped>
 .app-menu {
-  flex-basis: 220px;
+  width: 220px;
   min-width: 220px;
-  height: 100vh;
+  height: 100%;
 
+  overflow-x: hidden;
+  overflow-y: auto;
   color: #b7bdc3;
   background-color: #001529;
+  scrollbar-width: none; /* firefox */
+  -ms-overflow-style: none; /* IE 10+ */
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 
   .menu-logo {
     width: 100%;

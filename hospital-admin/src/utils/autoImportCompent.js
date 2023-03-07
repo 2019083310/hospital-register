@@ -17,11 +17,18 @@ import {
   ElTooltip,
   ElMessageBox,
   ElMessage,
-  ElTreeV2
+  ElTreeV2,
+  ElSwitch,
+  ElTimeSelect,
+  ElContainer,
+  ElAside,
+  ElMain,
+  ElHeader
 } from 'element-plus'
 
 const cpnList = [ElTable, ElButton, ElMenu, ElSubMenu, ElMenuItem, ElMenuItemGroup, ElCard,
-  ElTableColumn, ElForm, ElFormItem, ElSelect, ElOption, ElInput, ElPopconfirm, ElTooltip,ElTreeV2
+  ElTableColumn, ElForm, ElFormItem, ElSelect, ElOption, ElInput, ElPopconfirm, ElTooltip, ElTreeV2,
+  ElSwitch, ElTimeSelect, ElContainer, ElAside, ElMain, ElHeader
 ]
 // ?注册全局组件
 const autoImportComponent = (app) => {

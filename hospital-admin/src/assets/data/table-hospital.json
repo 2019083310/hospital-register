@@ -1,22 +1,32 @@
 [
   {
     "prop": "name",
-    "label": "菜单名称",
+    "label": "医院名称",
     "minWidth": 120
   },
   {
-    "prop": "level",
+    "prop": "levelText",
     "label": "级别",
+    "minWidth": 60
+  },
+  {
+    "prop": "field",
+    "label": "区域",
+    "minWidth": 120
+  },
+  {
+    "prop": "delivery",
+    "label": "状态",
     "minWidth": 80
   },
   {
-    "prop": "url",
-    "label": "菜单url",
-    "minWidth": 150
+    "prop": "picture",
+    "label": "图片",
+    "minWidth": 120
   },
   {
-    "prop": "role",
-    "label": "权限",
+    "prop": "openTimeText",
+    "label": "放号时间",
     "minWidth": 120
   },
   {

@@ -1,12 +1,27 @@
 <template>
   <div class="app-wrap">
-    <app-menu></app-menu>
+    <!-- <app-menu></app-menu>
     <div class="content-wrap">
       <app-header></app-header>
       <div class="content">
         <router-view></router-view>
       </div>
-    </div>
+    </div> -->
+    <el-container class="main-content">
+      <el-aside width="220px">
+        <app-menu></app-menu>
+      </el-aside>
+      <el-container class="page">
+        <el-header class="page-header">
+          <app-header></app-header>
+        </el-header>
+        <el-main class="page-content">
+          <div class="page-info">
+            <router-view></router-view>
+          </div>
+        </el-main>
+      </el-container>
+    </el-container>
   </div>
 </template>
 
@@ -16,31 +31,89 @@ import AppHeader from "@/components/common/app-header/index.vue";
 </script>
 
 <style lang="less" scoped>
+// .app-wrap {
+//   display: flex;
+//   align-items: flex-start;
+
+//   width: 100%;
+//   height: 100%;
+//   box-sizing: border-box;
+
+//   .content-wrap {
+//     flex: 1;
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: flex-start;
+//     height: 100%;
+
+//     background-color: #f5f5f5;
+
+//     box-sizing: border-box;
+
+//     .content {
+//       flex: 1;
+//       width: 100%;
+//       padding: 20px;
+
+//       box-sizing: border-box;
+
+//       overflow-x: hidden;
+//       overflow-y: scroll;
+//     }
+//   }
+// }
 .app-wrap {
-  display: flex;
-  align-items: flex-start;
-
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: 100vh;
-  box-sizing: border-box;
+  height: 100%;
+}
 
-  .content-wrap {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    height: 100vh;
+.main-content,
+.page {
+  height: 100%;
+}
 
-    background-color: #f5f5f5;
+.page-content {
+  height: calc(100% - 50px);
 
-    box-sizing: border-box;
-
-    .content {
-      flex: 1;
-      padding: 20px;
-
-      box-sizing: border-box;
-    }
+  .page-info {
+    background-color: #fff;
+    border-radius: 5px;
   }
+}
+
+.el-header{
+  display: flex;
+  color: #333;
+  text-align: center;
+  align-items: center;
+}
+
+.el-header {
+  height: 48px !important;
+}
+
+.el-aside {
+  overflow-x: hidden;
+  overflow-y: auto;
+  line-height: 200px;
+  text-align: left;
+  cursor: pointer;
+  background-color: #001529;
+  transition: width 0.3s linear;
+  scrollbar-width: none; /* firefox */
+  -ms-overflow-style: none; /* IE 10+ */
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.el-main {
+  color: #333;
+  text-align: center;
+  background-color: #f0f2f5;
 }
 </style>

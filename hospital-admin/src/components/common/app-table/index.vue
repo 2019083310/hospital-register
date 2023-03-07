@@ -2,7 +2,6 @@
   <div class="app-table-wrap">
     <el-table
       style="width: 100%; margin-bottom: 20px"
-      flexible
       border
       empty-text="暂时没有数据"
       row-key="id"
@@ -10,7 +9,12 @@
       :default-expand-all="expandAll"
     >
       <template v-if="isShowIndexColumn">
-        <el-table-column type="index" label="序号" :min-width="30" align="center"></el-table-column>
+        <el-table-column
+          type="index"
+          label="序号"
+          :min-width="60"
+          align="center"
+        ></el-table-column>
       </template>
       <template v-for="list in tableList" :key="list.prop">
         <template v-if="list.prop === 'operate'">
@@ -60,6 +64,19 @@
           >
             <template #default="scope">
               <span>{{ formatDate(scope.row.updateTime) }}</span>
+            </template>
+          </el-table-column>
+        </template>
+        <template v-else-if="list.prop === 'delivery'">
+          <el-table-column
+            :label="list.label"
+            :min-width="list.minWidth"
+            header-align="center"
+            align="center"
+            show-overflow-tooltip
+          >
+            <template #default="scope">
+              <el-switch v-model="scope.row.delivery"></el-switch>
             </template>
           </el-table-column>
         </template>
@@ -118,4 +135,14 @@ const handleCancelEvent = () => {
 };
 </script>
 
-<style lang="less" scoped></style>
+<style lang="less" scoped>
+.app-table-wrap {
+  width:100%;
+
+  :deep(.el-table) {
+
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+}
+</style>
