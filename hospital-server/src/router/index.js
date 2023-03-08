@@ -1,6 +1,7 @@
 // ?导出路由
 const fs = require('fs')
 const path = require('path')
+const fileRouter = require('./file-router')
 
 // *读取当前目录的所有路由
 const appRoutes = async (app) => {
@@ -17,6 +18,9 @@ const appRoutes = async (app) => {
       app.use(router.allowedMethods())
     }
   }
+
+  app.use(fileRouter.routes())
+  app.use(fileRouter.allowedMethods())
 }
 
 module.exports = appRoutes

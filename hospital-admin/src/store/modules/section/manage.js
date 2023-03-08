@@ -3,7 +3,8 @@ import {
 } from 'pinia'
 
 import {
-  getAllFieldFetch
+  getAllFieldFetch,
+  getHospitalListFetch
 } from '@/api/modules/section/manage'
 import {
   useGlobalTips
@@ -12,7 +13,8 @@ import {
 const useManageStore = defineStore('manage', {
   state() {
     return {
-      fieldList: []
+      fieldList: [],
+      hospitalList: []
     }
   },
   getters: {},
@@ -23,6 +25,19 @@ const useManageStore = defineStore('manage', {
 
         if (res.code === 1) {
           this.fieldList = res.result
+        } else {
+          throw new Error(res.message)
+        }
+      } catch (error) {
+        return useGlobalTips('error', error.message)
+      }
+    },
+    async changeHospitalListAction() {
+      try {
+        const res = await getHospitalListFetch()
+
+        if (res.code === 1) {
+          this.hospitalList = res.result
         } else {
           throw new Error(res.message)
         }

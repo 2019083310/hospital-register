@@ -130,14 +130,14 @@ const handleAddRoleClick = () => {
   isShowModal.value = true;
 };
 
-// ?新增菜单取消按钮回调
+// ?新增角色/编辑角色取消按钮回调
 const handleFormCancel = () => {
   isShowModal.value = false;
 
   resetFormModal();
 };
 
-// ?新增/修改菜单确认按钮回调
+// ?新增/修改角色确认按钮回调
 const handleFormConfirm = async () => {
   const valid = await ruleFormRef.value.validate();
 

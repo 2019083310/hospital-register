@@ -12,7 +12,7 @@
         <el-table-column
           type="index"
           label="序号"
-          :min-width="60"
+          :min-width="55"
           align="center"
         ></el-table-column>
       </template>
@@ -67,7 +67,7 @@
             </template>
           </el-table-column>
         </template>
-        <template v-else-if="list.prop === 'delivery'">
+        <template v-else-if="list.prop === 'open'">
           <el-table-column
             :label="list.label"
             :min-width="list.minWidth"
@@ -76,7 +76,49 @@
             show-overflow-tooltip
           >
             <template #default="scope">
-              <el-switch v-model="scope.row.delivery"></el-switch>
+              <el-switch
+                v-model="scope.row.open"
+                :active-value="1"
+                :inactive-value="0"
+                @change="handleHosOpenChange"
+              ></el-switch>
+            </template>
+          </el-table-column>
+        </template>
+        <template v-else-if="list.prop === 'levelText'">
+          <el-table-column
+            :label="list.label"
+            :min-width="list.minWidth"
+            header-align="center"
+            align="center"
+            show-overflow-tooltip
+          >
+            <template #default="scope">
+              <span>{{
+                scope.row.levelText === 1
+                  ? "一级医院"
+                  : scope.row.levelText === 2
+                  ? "二级医院"
+                  : "三级医院"
+              }}</span>
+            </template>
+          </el-table-column>
+        </template>
+        <template v-else-if="list.prop === 'picture'">
+          <el-table-column
+            :label="list.label"
+            :min-width="list.minWidth"
+            header-align="center"
+            align="center"
+            show-overflow-tooltip
+          >
+            <template #default="scope">
+              <el-image
+                style="width: 60px; height: 60px"
+                :src="scope.row.picture"
+                :preview-src-list="[scope.row.picture]"
+                fit="cover"
+              />
             </template>
           </el-table-column>
         </template>
@@ -117,7 +159,12 @@ const props = defineProps({
     default: false,
   },
 });
-const emits = defineEmits(["editTableData", "deleteTableData", "confirmDelete"]);
+const emits = defineEmits([
+  "editTableData",
+  "deleteTableData",
+  "confirmDelete",
+  "openStatusChange",
+]);
 
 // *table operate
 const handleEdit = (v) => {
@@ -133,10 +180,19 @@ const handleConfirmEvent = (v) => {
 const handleCancelEvent = () => {
   return;
 };
+
+// *处理医院开放状态改变
+const handleHosOpenChange = (v) => {
+  emits("openStatusChange", v);
+};
 </script>
 
 <style lang="less" scoped>
 .app-table-wrap {
   width: 100%;
+
+  :deep(.el-table .el-table__cell) {
+    z-index: 0;
+  }
 }
 </style>

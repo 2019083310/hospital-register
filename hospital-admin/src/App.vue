@@ -30,6 +30,10 @@
 <script setup>
 import AppMenu from "@/components/common/app-menu/index.vue";
 import AppHeader from "@/components/common/app-header/index.vue";
+
+// import shell from "@/api/shell/shell";
+
+// shell();
 </script>
 
 <style lang="less" scoped>
