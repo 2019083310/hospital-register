@@ -66,17 +66,8 @@ const handleMenuItemClick = (v) => {
   min-width: 220px;
   height: 100%;
 
-  overflow-x: hidden;
-  overflow-y: auto;
   color: #b7bdc3;
   background-color: #001529;
-  scrollbar-width: none; /* firefox */
-  -ms-overflow-style: none; /* IE 10+ */
-
-  &::-webkit-scrollbar {
-    display: none;
-  }
-
   .menu-logo {
     width: 100%;
     line-height: 50px;

@@ -1,5 +1,6 @@
 <template>
   <div class="app-wrap">
+    <!-- 1.自己的布局 -->
     <!-- <app-menu></app-menu>
     <div class="content-wrap">
       <app-header></app-header>
@@ -7,6 +8,7 @@
         <router-view></router-view>
       </div>
     </div> -->
+    <!-- 2.利用element-plus实现的flex响应式布局 -->
     <el-container class="main-content">
       <el-aside width="220px">
         <app-menu></app-menu>
@@ -62,6 +64,7 @@ import AppHeader from "@/components/common/app-header/index.vue";
 //     }
 //   }
 // }
+// ?利用element-plus实现响应式布局样式
 .app-wrap {
   position: fixed;
   top: 0;
@@ -84,7 +87,7 @@ import AppHeader from "@/components/common/app-header/index.vue";
   }
 }
 
-.el-header{
+.el-header {
   display: flex;
   color: #333;
   text-align: center;
@@ -92,7 +95,7 @@ import AppHeader from "@/components/common/app-header/index.vue";
 }
 
 .el-header {
-  height: 48px !important;
+  height: 50px !important;
 }
 
 .el-aside {
@@ -102,7 +105,6 @@ import AppHeader from "@/components/common/app-header/index.vue";
   text-align: left;
   cursor: pointer;
   background-color: #001529;
-  transition: width 0.3s linear;
   scrollbar-width: none; /* firefox */
   -ms-overflow-style: none; /* IE 10+ */
 

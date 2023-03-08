@@ -137,12 +137,6 @@ const handleCancelEvent = () => {
 
 <style lang="less" scoped>
 .app-table-wrap {
-  width:100%;
-
-  :deep(.el-table) {
-
-    overflow-x: auto;
-    overflow-y: hidden;
-  }
+  width: 100%;
 }
 </style>
