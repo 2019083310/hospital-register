@@ -21,7 +21,7 @@ roleRouter.get('/role/getList', getRoleListCont)
 roleRouter.get('/role/remove/:id', removeRoleCont)
 
 // *4.修改角色
-roleRouter.put('/role/update', updateRoleCont)
+roleRouter.put('/role/update/:id', updateRoleCont)
 
 // *5.判断角色名称是否存在
 roleRouter.get('/role/unique', verifyNameUniqueCont)

@@ -29,15 +29,15 @@ class RoleModel {
   }
 
   // *4.更改角色
-  async updateRoleService(name, desc, menu) {
+  async updateRoleService(name, desc, menu, id) {
     let statement
     let result
     if (name.length) {
-      statement = 'UPDATE role SET `name`=?,`desc`=?,`menu`=?;'
-      result = await connection.execute(statement, [name, desc, menu])
+      statement = 'UPDATE role SET `name`=?,`desc`=?,`menu`=? WHERE `id`=?;'
+      result = await connection.execute(statement, [name, desc, menu, id])
     } else {
-      statement = 'UPDATE role SET `desc`=?,`menu`=?;'
-      result = await connection.execute(statement, [desc, menu])
+      statement = 'UPDATE role SET `desc`=?,`menu`=? WHERE `id`=?;'
+      result = await connection.execute(statement, [desc, menu, id])
     }
 
     return result[0]

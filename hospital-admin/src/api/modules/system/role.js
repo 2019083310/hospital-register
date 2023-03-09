@@ -30,9 +30,9 @@ export const removeRoleFetch = (id) => {
 }
 
 // 更改角色
-export const updateRoleFetch = (name, desc, menu) => {
+export const updateRoleFetch = (name, desc, menu, id) => {
   return request.devFetch.request({
-    url: '/system/role/update',
+    url: `/system/role/update/${id}`,
     method: 'put',
     data: {
       name,

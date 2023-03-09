@@ -67,19 +67,23 @@ class RoleController {
   // *4.更改角色
   async updateRoleCont(ctx, next) {
     let result
-    const {
-      name,
-      desc,
-      menu
-    } = ctx.request.body
 
     try {
+      const {
+        id
+      } = ctx.request.params
+      const {
+        name,
+        desc,
+        menu
+      } = ctx.request.body
+
       // 判断名字是否已经存在
       const ret = await roleModel.getRoleNameService(name.trim())
       if (ret.length) {
-        result = await roleModel.updateRoleService('', desc, menu)
+        result = await roleModel.updateRoleService('', desc, menu,id)
       } else {
-        result = await roleModel.updateRoleService(name, desc, menu)
+        result = await roleModel.updateRoleService(name, desc, menu,id)
       }
     } catch (error) {
       const err = new Error(error.message)

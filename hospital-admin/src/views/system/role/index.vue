@@ -83,6 +83,7 @@ const treeRef = ref();
 const isShowModal = ref(false);
 const modalTitle = ref("新建角色");
 const defaultCheckedKeys = ref([]);
+const currentEditId = ref();
 
 // *虚拟树的匹配值类型
 const props = {
@@ -163,7 +164,12 @@ const handleFormConfirm = async () => {
   } else if (valid && modalTitle.value === "编辑角色") {
     try {
       const checkedKeys = JSON.stringify(treeRef.value.getCheckedKeys());
-      const res = await updateRoleFetch(formModel.name, formModel.desc, checkedKeys);
+      const res = await updateRoleFetch(
+        formModel.name,
+        formModel.desc,
+        checkedKeys,
+        currentEditId.value
+      );
 
       if (res.code === 1) {
         isShowModal.value = false;
@@ -185,9 +191,9 @@ const handleFormConfirm = async () => {
 const handleEditTableColumn = async (v) => {
   modalTitle.value = "编辑角色";
 
-  console.log(v);
   formModel.name = v.name;
   formModel.desc = v.desc;
+  currentEditId.value = v.id;
 
   const menulist = v.menu
     .slice(1, -1)
@@ -229,6 +235,7 @@ const handleDeleteTableColumn = async (v) => {
 const resetFormModal = () => {
   formModel.name = "";
   formModel.desc = "";
+  currentEditId.value = "";
 
   defaultCheckedKeys.value = [];
 };
