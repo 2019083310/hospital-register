@@ -1,17 +1,18 @@
-const depTwoModel = require('../../../models/modules/section/deptwo-model')
+const doctorModel = require('../../../models/modules/section/doctor-model')
 
-class DepTwoController {
-  // *1.获取所有二级科室、门诊
-  async getAllDepTwoListCont(ctx, next) {
+class DoctorController {
+  // *1.获取所有医生列表
+  async getAllDeponeCont(ctx, next) {
     let result
 
     try {
       const {
         hosId,
-        depId
+        depId,
+        depTwoId
       } = ctx.request.query
 
-      result = await depTwoModel.getAllDepTwoListService(hosId, depId)
+      result = await doctorModel.getAllDoctorListService(hosId, depId, depTwoId)
     } catch (error) {
       const err = new Error(error.message)
       return ctx.app.emit('error', ctx, err)
@@ -24,21 +25,27 @@ class DepTwoController {
     }
   }
 
-  // *2.添加二级科室/门诊
-  async addDepartmentTwoCont(ctx, next) {
+  // *2.添加医生
+  async addDoctorCont(ctx, next) {
     let result
 
     try {
       const {
         name,
-        state,
+        jobId,
+        password,
         hosId,
         depId,
-        address,
+        depTwoId,
+        roleId,
+        state,
+        brief,
+        regMoney,
+        picture
       } = ctx.request.body
 
       // 插入数据
-      result = await depTwoModel.addDepTwoService(name, state, hosId, depId, address)
+      result = await doctorModel.addDoctorService(name, jobId, password, hosId, depId, depTwoId, roleId, state, brief, regMoney, picture)
     } catch (error) {
       return ctx.app.emit('error', ctx, error)
     }
@@ -50,8 +57,8 @@ class DepTwoController {
     }
   }
 
-  // *3.删除二级科室/门诊
-  async removeDepTwoCont(ctx, next) {
+  // *3.删除科室
+  async removeDoctorCont(ctx, next) {
     let result
 
     try {
@@ -61,7 +68,7 @@ class DepTwoController {
       } = ctx.request.params
 
       // 删除医院数据
-      result = await depTwoModel.removeDepTwoService(id)
+      result = await doctorModel.removeDoctorService(id)
     } catch (error) {
       return ctx.app.emit('error', ctx, error)
     }
@@ -73,25 +80,31 @@ class DepTwoController {
     }
   }
 
-  // *4.修改二级科室/门诊信息
-  async updateDepTwoInfoCont(ctx, next) {
+  // *4.修改科室信息
+  async updateDoctorCont(ctx, next) {
     let result
 
     try {
       // 获取数据
       const {
-        id
-      } = ctx.request.params
-      const {
         name,
-        state,
+        jobId,
+        password,
         hosId,
         depId,
-        address
+        depTwoId,
+        roleId,
+        state,
+        brief,
+        regMoney,
+        picture,
       } = ctx.request.body
+      const {
+        id
+      } = ctx.request.params
 
       // 修改医院数据
-      result = await depTwoModel.updateDepTwoInfoService(name, state, hosId, depId, address, id)
+      result = await doctorModel.updateDoctorService(name, jobId, password, hosId, depId, depTwoId, roleId, state, brief, regMoney, picture, id)
     } catch (error) {
       return ctx.app.emit('error', ctx, error)
     }
@@ -104,4 +117,4 @@ class DepTwoController {
   }
 }
 
-module.exports = new DepTwoController()
+module.exports = new DoctorController()

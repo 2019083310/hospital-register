@@ -2,16 +2,23 @@ const connection = require('../../../app/database')
 
 class DepTwoModel {
   // *1.获取所有二级科室门诊列表
-  async getAllDepTwoListService(hosId) {
-    let statement = 'SELECT d.id,d.`name` as depTwoName,f.`name` as depOneName,d.hosId,d.depId,d.state,d.address,d.createTime,d.updateTime,h.`name` as hosName FROM deptwo d LEFT JOIN hospital h ON d.hosId= h.id LEFT JOIN depone f ON d.depId = f.id WHERE hosId=?;'
+  async getAllDepTwoListService(hosId, depId) {
+    let statement;
     let result
-    if (hosId) {
+    if (hosId && depId) {
+      statement = 'SELECT d.id,d.`name` as depTwoName,f.`name` as depOneName,d.hosId,d.depId,d.state,d.address,d.createTime,d.updateTime,h.`name` as hosName FROM deptwo d LEFT JOIN hospital h ON d.hosId= h.id LEFT JOIN depone f ON d.depId = f.id WHERE d.hosId=? AND d.depId=?;'
+      result = await connection.execute(statement, [hosId, depId])
+    } else if (hosId) {
+      statement = 'SELECT d.id,d.`name` as depTwoName,f.`name` as depOneName,d.hosId,d.depId,d.state,d.address,d.createTime,d.updateTime,h.`name` as hosName FROM deptwo d LEFT JOIN hospital h ON d.hosId= h.id LEFT JOIN depone f ON d.depId = f.id WHERE d.hosId=?;'
       result = await connection.execute(statement, [hosId])
+    } else if (depId) {
+      statement = 'SELECT d.id,d.`name` as depTwoName,f.`name` as depOneName,d.hosId,d.depId,d.state,d.address,d.createTime,d.updateTime,h.`name` as hosName FROM deptwo d LEFT JOIN hospital h ON d.hosId= h.id LEFT JOIN depone f ON d.depId = f.id WHERE d.depId=?;'
+      result = await connection(statement, [depId])
     } else {
       statement = 'SELECT d.id,d.`name` as depTwoName,f.`name` as depOneName,d.depId,d.hosId,d.state,d.address,d.createTime,d.updateTime,h.`name` as hosName FROM deptwo d LEFT JOIN hospital h ON d.hosId= h.id LEFT JOIN depone f ON d.depId = f.id;'
       result = await connection.execute(statement)
     }
-
+    
     return result[0]
   }
 

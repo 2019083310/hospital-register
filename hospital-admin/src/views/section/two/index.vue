@@ -235,7 +235,7 @@ const handleFormConfirm = async () => {
 
       if (res.code === 1) {
         isShowModal.value = false;
-        depTwoStore.changeDepTwoListAction();
+        depTwoStore.changeDepTwoListAction({});
 
         resetFormModal();
         useGlobalTips("success", "添加成功");
@@ -257,7 +257,7 @@ const handleFormConfirm = async () => {
 
       if (res.code === 1) {
         isShowModal.value = false;
-        depTwoStore.changeDepTwoListAction();
+        depTwoStore.changeDepTwoListAction({});
 
         resetFormModal();
         useGlobalTips("success", "修改信息成功");
@@ -291,7 +291,7 @@ const handleDeleteTableColumn = async (v) => {
     const res = await removeDepartmentTwoFetch(v.id);
 
     if (res.code === 1) {
-      depTwoStore.changeDepTwoListAction();
+      depTwoStore.changeDepTwoListAction({});
       useGlobalTips("success", `删除${v.depName}成功`);
     } else {
       throw new Error(res.message);
@@ -325,7 +325,7 @@ const handleSearchClick = () => {};
 // ?生命周期回调
 onMounted(async () => {
   manageStore.changeHospitalListAction();
-  depTwoStore.changeDepTwoListAction();
+  depTwoStore.changeDepTwoListAction({});
 });
 </script>
 

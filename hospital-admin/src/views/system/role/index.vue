@@ -146,7 +146,7 @@ const handleFormConfirm = async () => {
     try {
       const checkedKeys = JSON.stringify(treeRef.value.getCheckedKeys());
       const res = await addRoleFetch(formModel.name, formModel.desc, checkedKeys);
-      console.log(res);
+      // console.log(res);
 
       if (res.code === 1) {
         isShowModal.value = false;

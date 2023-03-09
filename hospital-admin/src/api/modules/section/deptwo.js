@@ -4,11 +4,12 @@ import {
 } from "@/api"
 
 // 获取所有二级科室/门诊列表
-export const getAllDepTwoListFetch = (id) => {
+export const getAllDepTwoListFetch = (hosId, depId) => {
   return request.devFetch.request({
     url: '/section/deptwo/list',
     params: {
-      id
+      hosId,
+      depId
     }
   })
 }

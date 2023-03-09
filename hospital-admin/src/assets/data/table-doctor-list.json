@@ -1,0 +1,62 @@
+[
+  {
+    "prop": "doctorName",
+    "label": "医生姓名",
+    "minWidth": 100
+  },
+  {
+    "prop": "jobId",
+    "label": "医生工号",
+    "minWidth": 100
+  },
+  {
+    "prop": "hosName",
+    "label": "医院名称",
+    "minWidth": 120
+  },
+  {
+    "prop": "depOneName",
+    "label": "一级科室名称",
+    "minWidth": 120
+  },
+  {
+    "prop": "depOneName",
+    "label": "二级门诊名称",
+    "minWidth": 120
+  },
+  {
+    "prop": "state",
+    "label": "在职状态",
+    "minWidth": 100
+  },
+  {
+    "prop": "picture",
+    "label": "证件照",
+    "minWidth": 100
+  },
+  {
+    "prop": "regMoney",
+    "label": "诊断费用",
+    "minWidth": 100
+  },
+  {
+    "prop": "brief",
+    "label": "职业宣言",
+    "minWidth": 100
+  },
+  {
+    "prop": "createTime",
+    "label": "创建时间",
+    "minWidth": 150
+  },
+  {
+    "prop": "updateTime",
+    "label": "更新时间",
+    "minWidth": 150
+  },
+  {
+    "prop": "operate",
+    "label": "操作",
+    "minWidth": 140
+  }
+]

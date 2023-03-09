@@ -18,8 +18,10 @@ const useDepTwoStore = defineStore('deptwo', {
   getters: {},
   actions: {
     async changeDepTwoListAction(payload) {
+      if(Object.prototype.toString.call(payload).slice(8,-1)!=='Object') payload={}
+
       try {
-        const res = await getAllDepTwoListFetch(payload)
+        const res = await getAllDepTwoListFetch(payload?.hosId, payload?.depId)
 
         if (res.code === 1) {
           this.depTwoList = res.result
