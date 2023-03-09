@@ -86,7 +86,7 @@ import AppHeader from "@/components/common/app-header/index.vue";
   height: calc(100% - 50px);
 
   .page-info {
-    background-color: #fff;
+    background-color: #f5f5f5;
     border-radius: 5px;
   }
 }

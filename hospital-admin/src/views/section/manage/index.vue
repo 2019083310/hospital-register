@@ -1,10 +1,64 @@
 <template>
-  <div class="menu-wrap">
+  <div class="manage-wrap">
+    <div class="search-wrapper">
+      <app-search
+        class="search-content"
+        @formReset="handleFormReset"
+        @searchClick="handleSearchClick"
+      >
+        <template #search>
+          <!-- <el-form> -->
+          <el-form-item label="医院名称">
+            <el-input
+              v-model="searchModel.name"
+              clearable
+              placeholder="请输入医院名称"
+            ></el-input>
+          </el-form-item>
+          <el-form-item label="医院级别">
+            <el-select
+              v-model.number="searchModel.levelText"
+              placeholder="请选择医院级别"
+            >
+              <el-option label="一级医院" value="1" />
+              <el-option label="二级医院" value="2" />
+              <el-option label="三级医院" value="3" />
+            </el-select>
+          </el-form-item>
+          <el-form-item label="医院区域">
+            <el-select
+              v-model.number="searchModel.field"
+              placeholder="请选择医院归属区域"
+            >
+              <template v-for="field in fieldList" :key="field.id">
+                <el-option :label="field.name" :value="field.id"></el-option>
+              </template>
+            </el-select>
+          </el-form-item>
+          <el-form-item label="医院状态">
+            <el-select v-model.number="searchModel.open" placeholder="请选择医院状态">
+              <el-option label="开放" value="1" />
+              <el-option label="关闭" value="0" />
+            </el-select>
+          </el-form-item>
+          <el-form-item label="放号时间">
+            <el-time-select
+              v-model="searchModel.openTimeText"
+              start="08:00"
+              step="00:15"
+              end="18:00"
+              placeholder="请选择每天放号时间"
+            />
+          </el-form-item>
+          <!-- </el-form> -->
+        </template>
+      </app-search>
+    </div>
     <el-card class="box-card">
       <table-header
         title="医院列表"
         btn-title="添加医院"
-        @addBtnClick="handleAddMenuClick"
+        @addBtnClick="handleAddManageClick"
       ></table-header>
       <app-table
         :table-list="HospitalTableList"
@@ -100,6 +154,7 @@ import { useGlobalTips } from "@/utils/index";
 // import { manageTableData } from "@/test/index";
 import HospitalTableList from "@/assets/data/table-hospital.json";
 
+import AppSearch from "@/components/common/app-search/index.vue";
 import TableHeader from "@/components/common/table-header/index.vue";
 import AppTable from "@/components/common/app-table/index.vue";
 import AppFormModal from "@/components/common/app-form-modal/index.vue";
@@ -119,6 +174,14 @@ const formModel = reactive({
   levelText: "",
   field: "",
   open: 1,
+  openTimeText: "",
+});
+
+const searchModel = reactive({
+  name: "",
+  levelText: "",
+  field: "",
+  open: "",
   openTimeText: "",
 });
 
@@ -164,7 +227,7 @@ const rules = reactive({
 });
 
 // ?添加医院
-const handleAddMenuClick = () => {
+const handleAddManageClick = () => {
   modalTitle.value = "添加医院";
   isShowModal.value = true;
 };
@@ -319,6 +382,11 @@ const handlePictureRemove = async (v) => {
 // console.log(formModel.openTimeText);
 // };
 
+// ?搜索表单的重置
+const handleFormReset = () => {};
+
+const handleSearchClick = () => {};
+
 // ?生命周期回调
 onMounted(async () => {
   manageStore.changeFieldListAction();
@@ -327,10 +395,25 @@ onMounted(async () => {
 </script>
 
 <style lang="less" scoped>
-.menu-wrap {
+.manage-wrap {
   width: 100%;
+
+  background-color: #f5f5f5;
+
+  .search-content {
+    .el-form-item {
+      width: 400px;
+      padding: 10px 30px;
+
+      box-sizing: border-box;
+
+      color: #606266;
+    }
+  }
+
   .box-card {
     padding: 10px 20px;
+    // margin-top:20px;
     border-radius: 5px;
 
     background-color: #fff;

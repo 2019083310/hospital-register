@@ -85,6 +85,24 @@
             </template>
           </el-table-column>
         </template>
+        <template v-else-if="list.prop === 'state'">
+          <el-table-column
+            :label="list.label"
+            :min-width="list.minWidth"
+            header-align="center"
+            align="center"
+            show-overflow-tooltip
+          >
+            <template #default="scope">
+              <el-switch
+                v-model="scope.row.state"
+                :active-value="1"
+                :inactive-value="0"
+                @change="handleHosOpenChange"
+              ></el-switch>
+            </template>
+          </el-table-column>
+        </template>
         <template v-else-if="list.prop === 'levelText'">
           <el-table-column
             :label="list.label"
