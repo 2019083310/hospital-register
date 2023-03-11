@@ -31,7 +31,7 @@ class DepOneModel {
     return result[0]
   }
 
-  // *4.修改医院信息
+  // *4.修改科室信息
   async updateDeponeService(name, state, hosId, id) {
     const statement = 'UPDATE depone SET `name`=?,`hosId`=?,`state`=? WHERE `id`=?;'
 
