@@ -6,8 +6,8 @@ class DoctorModel {
     let statement;
     let result
     if (hosId && depId && depTwoId) {
-      statement = 'SELECT d.id,d.`name` as doctorName,d.jobId,f.`name` as depOneName,d.depId,d.roleId,s.`name` as depTwoName,d.hosId,d.state,d.avatar as picture,d.regMoney,d.password,d.brief,d.createTime,d.updateTime,h.`name` as hosName,s.`id` as depTwoId FROM doctor d LEFT JOIN hospital h ON d.hosId= h.id LEFT JOIN depone f ON d.depId = f.id LEFT JOIN deptwo s ON d.depTwoId = s.id;'
-      result = await connection.execute(statement, [hosId, depId])
+      statement = 'SELECT d.id,d.`name` as doctorName,d.jobId,f.`name` as depOneName,d.depId,d.roleId,s.`name` as depTwoName,d.hosId,d.state,d.avatar as picture,d.regMoney,d.password,d.brief,d.createTime,d.updateTime,h.`name` as hosName,s.`id` as depTwoId FROM doctor d LEFT JOIN hospital h ON d.hosId= h.id LEFT JOIN depone f ON d.depId = f.id LEFT JOIN deptwo s ON d.depTwoId = s.id WHERE d.hosId=? AND d.depId=? AND d.depTwoId=?;'
+      result = await connection.execute(statement, [hosId, depId,depTwoId])
     } else if (hosId && depId) {
       statement = 'SELECT d.id,d.`name` as doctorName,d.jobId,f.`name` as depOneName,d.depId,d.roleId,s.`name` as depTwoName,d.hosId,d.state,d.avatar as picture,d.regMoney,d.password,d.brief,d.createTime,d.updateTime,h.`name` as hosName,s.`id` as depTwoId FROM doctor d LEFT JOIN hospital h ON d.hosId= h.id LEFT JOIN depone f ON d.depId = f.id LEFT JOIN deptwo s ON d.depTwoId = s.id;'
       result = await connection.execute(statement, [hosId])

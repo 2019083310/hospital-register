@@ -18,8 +18,12 @@ const useDoctorStore = defineStore('doctor', {
   getters: {},
   actions: {
     async changeDoctorListAction(payload) {
+      if (Object.prototype.toString.call(payload).slice(8, -1) !== 'Object') {
+        payload = {}
+      }
+
       try {
-        const res = await getAllDoctorListFetch(payload)
+        const res = await getAllDoctorListFetch(payload?.hosId, payload?.depId, payload?.depTwoId)
 
         if (res.code === 1) {
           this.doctorList = res.result

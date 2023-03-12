@@ -4,11 +4,13 @@ import {
 } from "@/api"
 
 // 获取所有医生列表
-export const getAllDoctorListFetch = (id) => {
+export const getAllDoctorListFetch = (hosId, depId, depTwoId) => {
   return request.devFetch.request({
     url: '/section/doctor/list',
     params: {
-      id
+      hosId,
+      depId,
+      depTwoId
     }
   })
 }

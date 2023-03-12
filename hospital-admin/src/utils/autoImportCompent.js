@@ -25,12 +25,15 @@ import {
   ElMain,
   ElHeader,
   ElImage,
-  ElUpload
+  ElUpload,
+  ElTimePicker,
+  ElInputNumber,
+  ElDatePicker
 } from 'element-plus'
 
 const cpnList = [ElTable, ElButton, ElMenu, ElSubMenu, ElMenuItem, ElMenuItemGroup, ElCard,
   ElTableColumn, ElForm, ElFormItem, ElSelect, ElOption, ElInput, ElPopconfirm, ElTooltip, ElTreeV2,
-  ElSwitch, ElTimeSelect, ElContainer, ElAside, ElMain, ElHeader,ElImage,ElUpload
+  ElSwitch, ElTimeSelect, ElContainer, ElAside, ElMain, ElHeader, ElImage, ElUpload, ElTimePicker, ElInputNumber, ElDatePicker
 ]
 // ?注册全局组件
 const autoImportComponent = (app) => {
