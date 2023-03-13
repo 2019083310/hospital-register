@@ -10,10 +10,16 @@ class SystemModel {
   }
 
   // *2.请求系统菜单
-  async getSystemMenu() {
-    const statement = 'SELECT * FROM menu;'
+  async getSystemMenu(menuId) {
+    let result
+    if (menuId) {
+      const statement = 'SELECT * FROM menu WHERE id=?;'
+      result = await connection.execute(statement, [menuId])
+    } else {
+      const statement = 'SELECT * FROM menu;'
+      result = await connection.execute(statement)
+    }
 
-    const result = await connection.execute(statement)
     return result[0]
   }
 

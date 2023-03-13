@@ -5,7 +5,8 @@ import App from './App.vue'
 
 import {
   autoImportComponent,
-  registerMessageCpn
+  registerMessageCpn,
+  resetRouter
 } from './utils'
 
 // *使用vue-router
@@ -23,6 +24,14 @@ import 'element-plus/theme-chalk/el-message-box.css'
 const app = createApp(App)
 app.use(pinia)
 app.use(router)
+
+if (localStorage.getItem('token')) {
+  resetRouter()
+  const route = JSON.parse(localStorage.getItem('currentRoute'))
+
+  const path=route.path
+  router.push(path)
+}
 
 // *按需引入组件库组件
 autoImportComponent(app)

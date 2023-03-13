@@ -13,9 +13,12 @@ export const addMenuItem = (data) => {
 }
 
 // 获取菜单列表
-export const getMenuList = () => {
+export const getMenuList = (menuId) => {
   return request.devFetch.request({
     url: '/system/menu/list',
+    params: {
+      menuId
+    }
   })
 }
 

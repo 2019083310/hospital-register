@@ -8,14 +8,17 @@ const mainStore = defineStore('main', {
     return {
       userInfo: {
         name: 'coder'
-      }
+      },
+      menuList: []
     }
   },
-  getters:{
-    
+  getters: {
+
   },
   actions: {
-
+    changeMenuListAction(menu) {
+      this.menuList = menu
+    }
   }
 })
 

@@ -11,6 +11,12 @@ import {
   formatDateTwo,
   formatDateThree
 } from './format'
+import {
+  registerRoutes,
+  listToArray,
+  mapMenusToRoutes,
+  resetRouter
+} from "./registerRoutes";
 
 export {
   autoImportComponent,
@@ -19,5 +25,9 @@ export {
   formatDate,
   createData,
   formatDateTwo,
-  formatDateThree
+  formatDateThree,
+  registerRoutes,
+  mapMenusToRoutes,
+  listToArray,
+  resetRouter
 }

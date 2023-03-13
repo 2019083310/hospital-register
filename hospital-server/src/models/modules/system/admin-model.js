@@ -32,6 +32,14 @@ class AdminModel {
     const result = await connection.execute(statement, [username, password, roleId, state, picture, id])
     return result[0]
   }
+
+  // *5.根据用户名找管理员
+  async findAdminByUserName(username) {
+    const statement = 'SELECT * FROM admin WHERE username=?;'
+
+    const result = await connection.execute(statement, [username])
+    return result[0]
+  }
 }
 
 module.exports = new AdminModel()

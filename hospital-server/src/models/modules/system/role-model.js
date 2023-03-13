@@ -11,10 +11,15 @@ class RoleModel {
   }
 
   // *2.获取角色列表
-  async getRoleListService() {
-    const statement = 'SELECT * FROM role;'
-
-    const result = await connection.execute(statement)
+  async getRoleListService(roleId) {
+    let result
+    if (roleId) {
+      const statement = 'SELECT * FROM role WHERE id=?;'
+      result = await connection.execute(statement, [roleId])
+    } else {
+      const statement = 'SELECT * FROM role;'
+      result = await connection.execute(statement)
+    }
 
     return result[0]
   }

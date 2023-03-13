@@ -31,7 +31,11 @@ class SystemController {
     let result
 
     try {
-      result = await systemModel.getSystemMenu()
+      const {
+        menuId
+      } = ctx.request.query
+
+      result = await systemModel.getSystemMenu(menuId)
 
     } catch (error) {
       const err = new Error(error.message)
